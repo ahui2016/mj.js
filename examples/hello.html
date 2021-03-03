@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello World -- mj.js</title>
+	<script src="https://unpkg.com/jquery"></script>
+  </head>
+  <body>
+<script>
+
+const Hello = {
+    view:() => m('div').append([
+        m('h1').attr({class: 'title'}).text('My first app'),
+        m('button').text('A button'),
+    ])
+};
+
+$('body').append([
+	m(Hello),
+]);
+
+/* 以上是一个最简单的 mj.js 使用示例，其中有三个要点：
+ * 1. 只依赖 jquery
+ * 2. html 部分完全空白，一切都由 js 组件组成
+ * 3. javascript 部分非常像 Mithril
+ */
+
+// 以下是基于 jQuery 实现的类似 Mithril 的框架 (暂定名 mj.js) 的全部代码。
+
+// 函数名 m 来源于 Mithril, 也可以理解为 make 的简称，用来创建一个元素。
+function m(name) {
+  if (jQuery.type(name) == 'string') {
+    return $(document.createElement(name));
+  }
+  return name.view();
+}
+
+// 函数名 cc 意思是 create a component, 用来创建一个简单的组件。
+function cc(name, id, elements) {
+  if (!id) id = '' + Math.round(Math.random() * 100000000);
+  const vnode = m(name).attr('id', id);
+  if (elements) vnode.append(elements);
+  return {id: '#'+id, raw_id: id, view: () => vnode};
+}
+</script>
+</body>
+</html>

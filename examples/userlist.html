@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Users Exmaple -- mj.js</title>
+    <script src="https://unpkg.com/jquery"></script>
+  </head>
+  <style>
+    li {
+      margin-bottom: 1em;
+    }
+    .delete-btn {
+      margin-left: 1em;
+    }
+  </style>
+  <body>
+<script>
+
+// 当一个组件需要与其他组件交流时，建议使用 cc 函数创建组件。
+const GetUsers = cc('button');
+
+// 组件可以方便地嵌套到另一个组件中，比如这个 UserList 可以嵌套到 Users 里。 
+const UserList = cc('ul');
+
+const Users = {
+  view: () => m(UserList),
+
+  // 组件还可以拥有自己的 method, 比如这个 add。
+  add: (user) => {
+
+    // cc 函数默认自动生成一个随机 id, 也可以手动指定 id,
+    // 比如这里给每个 item 手动指定 id 等于 user.id。
+    const item = cc('li', user.id, [
+      `${user.firstName} ${user.lastName}`,
+      m('button').addClass('delete-btn').text('delete'),
+    ]);
+    $(UserList.id).append(m(item));
+    $(item.id + ' .delete-btn').click(() => {
+      $(item.id).remove();
+    });
+  },
+};
+
+const Loading = {
+  view: () => $('<p id="loading" class="alert-info">Loading...</p>'),
+  toggle: () => { $('#loading').toggle(); },
+};
+
+$('body').append([
+  m(GetUsers).text('get users'),
+  m(Loading).toggle(),
+  m(Users),
+]);
+
+init();
+
+function init() {
+  $(GetUsers.id).click(() => {
+    disable(GetUsers.id);
+    Loading.toggle();
+    $.getJSON('https://rem-rest-api.herokuapp.com/api/users')
+      .done(resp => {
+
+        // 通过调用组件的方法与组件交流，比如这里调用 Users.add
+        resp.data.forEach(Users.add);
+
+        // 通过组件的 id 来与组件交流，比如这里通过 id 来访问组件。
+        $(GetUsers.id).hide();
+      })
+      .always(() => {
+        Loading.toggle();
+      });
+  });
+}
+
+function disable(id) { $(id).prop('disabled', true); }
+function enable(id) { $(id).prop('disabled', false); }
+
+/* 在上面的例子中可以看到：
+ * 1. 组件可以非常方便地嵌套到另一个组件中
+ * 2. 组件可以有自己的 method
+ * 3. 与组件交流有两种方式：通过访问组件的 method, 或者通过组件的 id。
+ */
+
+// 以下是基于 jQuery 实现的类似 Mithril 的框架 (暂定名 mj.js) 的全部代码。
+
+// 函数名 m 来源于 Mithril, 也可以理解为 make 的简称，用来创建一个元素。
+function m(name) {
+  if (jQuery.type(name) == 'string') {
+    return $(document.createElement(name));
+  }
+  return name.view();
+}
+
+// 函数名 cc 意思是 create a component, 用来创建一个简单的组件。
+function cc(name, id, elements) {
+  if (!id) id = '' + Math.round(Math.random() * 100000000);
+  const vnode = m(name).attr('id', id);
+  if (elements) vnode.append(elements);
+  return {id: '#'+id, raw_id: id, view: () => vnode};
+}
+</script>
+</body>
+</html>
