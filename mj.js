@@ -9,8 +9,9 @@ function m(name) {
 }
 
 // 函数名 cc 意思是 create a component, 用来创建一个简单的组件。
+// 由于纯数字 id 不符合 html 规范，因此以 r 开头（意思是 random）。
 function cc(name, id, elements) {
-  if (!id) id = '' + Math.round(Math.random() * 100000000);
+  if (!id) id = 'r' + Math.round(Math.random() * 100000000);
   const vnode = m(name).attr('id', id);
   if (elements) vnode.append(elements);
   return {id: '#'+id, raw_id: id, view: () => vnode};
