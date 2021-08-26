@@ -1,12 +1,12 @@
 # mj.js
 
-受 Mithril 启发的基于 jQuery 实现的极简框架。
+受 Mithril.js 启发的基于 jQuery 实现的极简框架。
 
 ## 简介
 
 本框架只有两个小函数共约 10 行代码，但使用起来的便利程度接近于 Mithril, 易学、易用、易理解，非常适用于小型项目。
 
-## 为什么要模仿 Mithril ?
+## 为什么要模仿Mithril?
 
 - 在使用 jQuery 写小项目的时候，通常习惯写一部分 HTML, 然后再写 js 去操作 DOM, 但这样做不方便做组件。
 - 模仿了 Mithril 之后，完全不写 HTML, 一切都是 js, 因此非常轻松实现组件化，并且实际效果非常好，组件可以相互交流、可以嵌套、可以复用。
@@ -25,3 +25,7 @@
   1. 通过调用组件本身的方法来使组件发生变化
   2. 通过组件的 id 来访问组件，从而实现组件之间的交流
 - 在 examples/userlist.html 的注释中有更具体的说明。
+
+## TypeScript
+
+2021-08-26 用 TypeScript 改写了 mj.js 并且进行了少量扩充，与 Bootstrap 搭配使用，详见 https://github.com/ahui2016/iPelago-Server/blob/main/public/ts/src/mj.ts
