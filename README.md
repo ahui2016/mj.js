@@ -30,4 +30,6 @@
 
 - 2021-08-26 用 TypeScript 改写了 mj.js 并且进行了少量扩充，与 Bootstrap 搭配使用，详见 https://github.com/ahui2016/iPelago-Server/blob/main/public/ts/src/mj.ts
 
-- 一个用 TypeScript版本的mj.js 制作网站的例子: https://github.com/ahui2016/blogs-navi
+- 两个使用 TypeScript 版本的 mj.js 的例子:
+  - https://github.com/ahui2016/blogs-navi
+  - https://github.com/ahui2016/dictplus
