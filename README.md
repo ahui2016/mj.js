@@ -16,7 +16,7 @@
 
 - 本框架只有两个小函数，就在本仓库的 mj.js 文件里，直接复制，粘贴到自己的代码里使用即可。
 - 更具体的使用方法请看本仓库 examples 文件夹里的示例。
-- 更多简介请看宣传文案 https://v2ex.com/t/758276
+- 更多简介请看宣传文案 <https://v2ex.com/t/758276>
 
 ## 误解
 
@@ -26,10 +26,13 @@
   2. 通过组件的 id 来访问组件，从而实现组件之间的交流
 - 在 examples/userlist.html 的注释中有更具体的说明。
 
-## TypeScript
+## 更多例子
 
-- 2021-08-26 用 TypeScript 改写了 mj.js 并且进行了少量扩充，与 Bootstrap 搭配使用，详见 https://github.com/ahui2016/iPelago-Server/blob/main/public/ts/src/mj.ts
+- 一个与 Bootstrap 搭配使用的例子，比较复杂的界面也能实现，详见 <https://github.com/ahui2016/localtags/>
+- [2021-08-26] 用 TypeScript 改写了 mj.js 并且进行了少量扩充，与 Bootstrap 搭配使用，详见 <https://github.com/ahui2016/iPelago-Server/blob/main/public/ts/src/mj.ts>
 
 - 两个使用 TypeScript 版本的 mj.js 的例子:
-  - https://github.com/ahui2016/blogs-navi
-  - https://github.com/ahui2016/dictplus
+  - <https://github.com/ahui2016/blogs-navi>
+  - <https://github.com/ahui2016/dictplus>
+
+- [2022-08-29] 一个后端用 Java, 前端用 mj.js 的例子 <https://github.com/ahui2016/monostich/> 及相关教程 <https://geeknote.net/SuperMild/posts/1450>
